@@ -745,6 +745,8 @@ class MainWindow(QMainWindow):
             self.btn_disconnect.setEnabled(True)
             self.btn_start.setEnabled(True)
             self._append_log(f"✅ MQTT 连接成功")
+            self.mqtt.subscribe("CustomByteBlock", qos=0)
+            self.mqtt.subscribe("/video/#", qos=0)
         else:
             self.connected = False
             self.led_label.setStyleSheet("color: #e53935; font-size: 18px;")

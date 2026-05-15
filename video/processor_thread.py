@@ -417,7 +417,7 @@ class VideoProcessorThread(QThread):
             self.stream_buffer.extend(h264_chunk)
 
             # 缓冲区软上限：保留最后一个 IDR
-            if len(self.stream_buffer) > 200 * 1024:
+            if len(self.stream_buffer) > 10 * 1024:
                 idr_pos = -1
                 for i in range(len(self.stream_buffer) - 5, 0, -1):
                     if self.stream_buffer[i:i+4] == b'\x00\x00\x00\x01' or self.stream_buffer[i:i+3] == b'\x00\x00\x01':
